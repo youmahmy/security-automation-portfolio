@@ -23,14 +23,17 @@ The flow chart below illustrates the controlled path of data, ensuring only whit
 
 ### 1. Dedicated VM and Networking
 An Ubuntu Server 24.04 LTS instance was installed in VirtualBox using a Bridged Adapter networking setup. This configuration was crucial to ensure the VM received its own unique IP address on the Local Area Network (LAN), enabling accurate IP-based policy enforcement.
+
 ![VirtualBox Networking Setup](assets/02-vm-networking-setup.png)
 
 ### 2. Remote Access
 After configuring the server, SSH access was established from the Windows host using WSL2, allowing for efficient command-line management and file transfers.
+
 ![SSH connection from WSL2 to Ubuntu VM](assets/03-wsl2-ssh-connection.png)
 
 ### 3. Kubernetes Cluster Deployment
 I chose k3s for its lightweight nature and simplicity. The cluster was installed with the default Traefik Ingress controller disabled to prevent conflicts with the Nginx Ingress controller, which was installed separately to manage traffic rules.
+
 ![K3s cluster and Nginx Ingress controller installation confirmation](assets/04-k3s-ingress-setup.png)
 
 ---
