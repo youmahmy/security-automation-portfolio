@@ -62,7 +62,7 @@ Applying the Zero-Trust exception rule:
 
 ### 2. Policy Enforcement in Action
 **Unauthorised Access Attempt:**
-Traffic from any standard pod (not matching the `youcef` label) is denied and logged by Whisker.
+Traffic from any standard pod *(not matching the `youcef` label)* is denied and logged by Whisker.
 
 ![Whisker Denied Traffic](assets/10-whisker-denied-flow.png)
 
@@ -78,7 +78,7 @@ Finally, I performed a container security scan on the `juice-shop` image using T
 
 **Scan Results:**
 The scan revealed significant vulnerabilities in the outdated image:
-* **Total:** 68 Vulnerabilities (including 8 CRITICAL)
+* **Total:** 68 Vulnerabilities *(including 8 CRITICAL)*
 * **Debian Image:** 12 Low
 * **Node.js Packages:** 55 Vulnerabilities
 
