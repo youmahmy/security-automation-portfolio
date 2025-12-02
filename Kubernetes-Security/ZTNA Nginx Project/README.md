@@ -6,7 +6,7 @@ This project demonstrates Zero Trust Network Access principles by deploying a vu
 The environment was set up in a dedicated VM to ensure stable, production-like network policy enforcement, avoiding common pitfalls found in virtual environments like WSL2.
 
 ### Stack Used 
-* **Operating System:** Ubuntu Server 24.04 LTS *(inside VirtualBox)*
+* **Operating System:** Ubuntu Server 24.04 LTS *(inside VirtualBox)* 
 * **Networking:** Bridged Adapter *(we're using LAN connectivity)*
 * **Container Orchestration:** K3s *(lightweight Kubernetes distribution)*
 * **Security:** Nginx Ingress Controller *(for IP Whitelisting)*
