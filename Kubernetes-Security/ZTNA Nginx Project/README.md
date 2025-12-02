@@ -113,8 +113,10 @@ Furthermore, debugging ingress traffic with IP whitelists was not straightforwar
 The full process for reproducing this project are as follows:
 
 **Ubuntu image:** https://ubuntu.com/download/server
-**VirtualBox hostname:** ubuntu-k8s Type: Linux Version: Ubuntu (64-bit)
-**Networking:** Bridged Adapter (So the VM gets an IP from the LAN)
+
+**VirtualBox hostname:** ubuntu-k8s **Type:** Linux Version: Ubuntu *(64-bit)*
+
+**Networking:** Bridged Adapter *(So the VM gets an IP from the LAN)*
 
 *Settings > Storage > Attach the downloaded .iso*
 
