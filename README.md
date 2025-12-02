@@ -3,7 +3,7 @@ A collection of projects and scripts for enterprise security operations by Youce
 
 ---
 # Introduction
-This portfolio showcases practical, offensive, and defensive security engineering projects focused on increasing operational efficiency, reducing organisational risk and hardening environments.
+This portfolio showcases practical offensive and defensive security engineering projects focused on increasing operational efficiency, reducing organisational risk and hardening environments.
 
 My work emphasises the strategic application of automation to critical security domains, including:
 
