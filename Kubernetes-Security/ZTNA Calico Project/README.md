@@ -14,7 +14,7 @@ This project demonstrates the implementation of Zero-Trust Network Segmentation 
 ## Part 1: Basic Ingress Traffic Blocking
 
 ### 1. Cluster Setup & Calico Deployment
-I began by installing Kind and configuring the cluster to use Calico as the Container Network Interface (CNI). The configuration ensures the Calico control plane and worker nodes are correctly deployed with the necessary Custom Resource Definitions (CRDs) for policy enforcement.
+I began by installing Kind and configuring the cluster to use Calico as the Container Network Interface *(CNI)*. The configuration ensures the Calico control plane and worker nodes are correctly deployed with the necessary Custom Resource Definitions *(CRDs)* for policy enforcement.
 
 ![Calico CRD Configuration](assets/01-calico-crd-config.png)
 
