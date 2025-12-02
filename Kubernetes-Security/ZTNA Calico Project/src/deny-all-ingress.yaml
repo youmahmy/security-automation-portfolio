@@ -1,0 +1,29 @@
+apiVersion: projectcalico.org/v3
+kind: NetworkPolicy
+metadata:
+  name: block-all-ingress-to-juice-shop
+  namespace: default
+spec:
+  #Policy for the web app
+  selector: "app == 'youcefs-juice-shop'"
+  
+# Set a high order to ensure this policy is processed first
+  order: 50
+  
+  # Specify that this policy governs INGRESS traffic
+  types:
+    - Ingress
+    
+  ingress:
+    # Rule 1: LOG the connection attempt (non-terminating)
+    - action: Log
+      protocol: TCP
+      destination:
+        ports: [80] # Targets the Service port 80
+        
+    #Rule 2: Explicitly DENY all remaining ingress traffic.
+    # Since there are no "Allow" rules, this rule is hit by all incoming traffic.
+    - action: Deny
+      protocol: TCP
+      destination:
+        ports: [80]

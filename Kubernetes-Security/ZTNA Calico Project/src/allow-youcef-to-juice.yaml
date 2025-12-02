@@ -1,0 +1,15 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: juice-shop-ip-policy
+  namespace: default
+spec:
+  selector: "app == 'youcefs-juice-shop'"
+
+  order: 10
+  types:
+    - Ingress
+  ingress:
+    - action: Allow
+      source:
+        selector: "run == 'youcef'"
