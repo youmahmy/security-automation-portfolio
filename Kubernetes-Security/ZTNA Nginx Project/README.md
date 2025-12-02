@@ -1,15 +1,15 @@
 # Kubernetes WebApp Deployment with Nginx Ingress and IP Whitelisting (ZTNA)
 
 ## Project Overview
-This project demonstrates Zero Trust Network Access principles by deploying a vulnerable web application (OWASP Juice Shop) on Kubernetes and enforcing IP Whitelisting using the Nginx Ingress Controller.
+This project demonstrates Zero Trust Network Access principles by deploying a vulnerable web application *(OWASP Juice Shop)* on Kubernetes and enforcing IP Whitelisting using the Nginx Ingress Controller.
 
 The environment was set up in a dedicated VM to ensure stable, production-like network policy enforcement, avoiding common pitfalls found in virtual environments like WSL2.
 
 ### Stack Used
-* **Operating System:** Ubuntu Server 24.04 LTS (inside VirtualBox)
-* **Networking:** Bridged Adapter (LAN connectivity)
-* **Container Orchestration:** K3s (lightweight Kubernetes distribution)
-* **Security:** Nginx Ingress Controller (for IP Whitelisting)
+* **Operating System:** Ubuntu Server 24.04 LTS *(inside VirtualBox)*
+* **Networking:** Bridged Adapter *(we're using LAN connectivity)*
+* **Container Orchestration:** K3s *(lightweight Kubernetes distribution)*
+* **Security:** Nginx Ingress Controller *(for IP Whitelisting)*
 * **Target:** OWASP Juice Shop
 
 ### Data Flow
@@ -22,7 +22,7 @@ The flow chart below illustrates the controlled path of data, ensuring only whit
 ## Part 1: Environment Setup
 
 ### 1. Dedicated VM and Networking
-An Ubuntu Server 24.04 LTS instance was installed in VirtualBox using a Bridged Adapter networking setup. This configuration was crucial to ensure the VM received its own unique IP address on the Local Area Network (LAN), enabling accurate IP-based policy enforcement.
+An Ubuntu Server 24.04 LTS instance was installed in VirtualBox using a Bridged Adapter networking setup. This configuration was crucial to ensure the VM received its own unique IP address on the Local Area Network, enabling accurate IP-based policy enforcement.
 
 ![VirtualBox Networking Setup](assets/02-vm-networking-setup.png)
 
@@ -41,7 +41,7 @@ I chose k3s for its lightweight nature and simplicity. The cluster was installed
 ## Part 2: Deployment and Policy Enforcement
 
 ### 1. Web App Deployment & Whitelisting Policy
-The deployment utilises a single YAML file containing the web app deployment, a service to expose it internally, and the Nginx Ingress Policy. This policy explicitly defines an IP Whitelist using annotations. In this demonstration, my mobile phones IP address (`.74`) was whitelisted, ensuring all other addresses are implicitly denied.
+The deployment utilises a single YAML file containing the web app deployment, a service to expose it internally, and the Nginx Ingress Policy. This policy explicitly defines an IP Whitelist using annotations. In this demonstration, my mobile phones IP address *(`.74`)* was whitelisted, ensuring all other addresses are implicitly denied.
 
 The key policy annotations included in the Ingress manifest:
 
@@ -55,7 +55,7 @@ The configuration file was transferred to the server via PowerShell's `scp` comm
 ![Deployment Command](assets/07-kubectl-apply-success.png)
 
 ### 3. Access Testing and Policy Validation
-To observe policy enforcement in real-time, the logs of the Nginx Ingress controller were streamed using the -f flag. 
+To observe policy enforcement in real-time, the logs of the Nginx Ingress controller were streamed using the `-f` flag. 
 
 ![Ingress Log Stream Command](assets/08-stream-logs-command.png)
 
@@ -87,7 +87,7 @@ During the initial setup, using WSL2 with MicroK8s and Docker caused major netwo
 ⦁	MicroK8s’ logs for the Nginx Ingress controller are scattered across Snap-managed directories. Attempting to kubectl logs sometimes hangs, especially when running as a non-root user. Purging MicroK8s occasionally left orphaned configurations or Snap artifacts, which broke subsequent cluster deployments or service discovery.
 
 ### Calico Observations
-As part of earlier experimentation *(documented in the “ZTNA Calico” project)*, I tested Calico for network policies. 
+As part of earlier experimentation *(documented in the “ZTNA Calico Project")*, I tested Calico for network policies. 
 
 Calico allowed cleaner log streaming from pods and network policies - `kubectl logs -n kube-system calico-node-*` - and provided visibility into allowed/denied traffic.
 
@@ -131,8 +131,8 @@ WSL2 Windows> `ssh youcef@192.168.1.112`
 `sudo kubectl get pods -n ingress-nginx` *(Should show pods as running after a minute)*
 
 **Transfer the web app deployment from Windows to the VM:**
-PowerShell> `scp C:\Users\XXX\juice-shop.yaml youcef@192.168.1.112:/home/XX`
-PowerShell> *(Enter the password for the VM)*
+*PowerShell>* `scp C:\Users\XXX\juice-shop.yaml youcef@192.168.1.112:/home/XX`
+*PowerShell>* *(Enter the password for the VM)*
 
 **Deploy the web server with the ingress rules:**
 `sudo kubectl apply -f /home/XX/juice-shop.yaml`
