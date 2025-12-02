@@ -7,6 +7,8 @@ This portfolio showcases practical, offensive, and defensive security engineerin
 
 My work emphasises the strategic application of automation to critical security domains, including:
 
+---
+
 ### Zero Trust Architecture *(ZTNA)*
 Implementing of precise network segmentation and access control policies *(Calico Network Policies, NGINX IP Whitelisting)* within Kubernetes and Linux environments.
 
