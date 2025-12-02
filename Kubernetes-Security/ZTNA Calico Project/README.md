@@ -3,7 +3,11 @@
 ## Project Overview
 This project demonstrates the implementation of Zero-Trust Network Segmentation and Automated Security Controls within a Kubernetes environment. Using Kind (Kubernetes in Docker) and Calico, I deployed a Vulnerable Web Application (OWASP Juice Shop) to test and enforce strict ingress traffic policies.
 
-**Key Technologies:** Kubernetes (Kind), Calico CNI, Calico Whisker (Observability), Trivy (Vulnerability Scanning).
+### Key Technologies Used
+- Kubernetes *(Kind)*
+- Calico CNI
+- Calico Whisker *(Observability)*
+- Trivy *(Vulnerability Scanning)*
 
 ---
 
