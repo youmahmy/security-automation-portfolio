@@ -8,7 +8,7 @@ Then, the program obtains the baseline hash in the 'baseline.txt' file and compa
 If a change is detected, the program will tell the user exactly which specific files were modified, and the exact date and time the modification took place respectively.
 
 -----
-Currently monitoring - shows the directories currently being monitored. Separated by entry number, directory name, hash value, time created.
+*Currently monitoring* - shows the directories currently being monitored. Separated by entry number, directory name, hash value, time created.
 
 `check`     -  Checks directory 1's integrity and lists the files within it that were changed *(e.g 'check 1')*. You can find the directory number on the far left-hand side of the main menu section.
 
@@ -24,4 +24,5 @@ Usage)
 - PowerShell 5.1 or later. 
 - The script should be run from a directory where you have write permissions, as it creates the *'baseline.txt'* file in the same location.
 - Open PowerShell and navigate to the script's directory, then run the script by typing *'.\YouCheck.ps1'*
+
 
