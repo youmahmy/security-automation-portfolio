@@ -3,13 +3,15 @@
 This directory contains a collection of practical Kubernetes security projects designed to demonstrate modern cluster hardening, network isolation, detection engineering, and automated response techniques. Each project replicates realistic scenarios encountered in production environments and is structured to be fully reproducible on a standard workstation. Together, these projects highlight the full lifecycle of Kubernetes security: prevention, detection, and automated response.
 
 ## Overview
+- **Falco Auto-Quarantine Project:** Developed a Falco-based automated quarantine system *(YouWatch)*, with dynamic Nginx ingress quarantining based on runtime threat detection and dynamic isolation of compromised pods.
+
 - **Nginx ZTNA Project:** Deployed a k3s cluster in Ubuntu Server to host a vulnerable web application *(OWASP Juice Shop)* alongside Nginx ingress whitelist rules, differentiating different devices on the LAN and their authorisation to accessing the service.
 
 - **Calico ZTNA Project:** Used Kind *(Kubernetes in Docker)* to create a configured Calico cluster, deploy a web application and apply Zero-Trust Network Segmentation based on pod names and Automated Security Controls within a Kubernetes environment. 
 
 
 ## Upcoming Projects
-- **Falco Auto-Quarantine Project:** This project will introduce a Falco-based automated quarantine system, with dynamic Nginx ingress quarantining which will focus on runtime threat detection and dynamic isolation of compromised pods.
+- **WAF WebApp Auto-Quarantine Project:** My existing YouWatch bash script will now stream logs from a Web Application Firewall (WAF), such as ModSecurity or NGINX App Protect, and quarantine the web application by applying the same ingress rule (as used in the Falco Auto-Quarantine Project) to the Nginx ingress pod.
 
 ---
 This repository aims to provide a high level of technical depth while maintaining clear, accessible documentation. It is intended to showcase a strong understanding of cluster architecture, policy design, and practical DevSecOps workflows. Each project includes architecture diagrams, implementation steps, live log output, and troubleshooting notes to provide complete insight into the decision-making process behind each solution.
