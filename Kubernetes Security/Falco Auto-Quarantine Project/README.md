@@ -3,7 +3,7 @@
 This project demonstrates a full workflow for implementing runtime threat detection with Falco, injecting custom Falco rules for targeted monitoring, and automating real-time quarantine of a vulnerable web application when suspicious activity is detected. The system is deployed on a k3s cluster running on Ubuntu 24.04 inside VirtualBox.
 
 ### Prerequisites
-This project builds on the Nginx Zero-Trust Access (ZTNA) implementation I developed previously. That project provides the VirtualBox configuration, SSHing into the VM, the Nginx ingress gateway, client authentication workflow and secure routing foundation used here. The existing Nginx configuration and certificates were reused to expose the new workload and test the YouWatch quarantine flow.
+This project builds on the Nginx Zero-Trust Access *(ZTNA)* implementation I developed previously. That project provides the VirtualBox configuration, SSHing into the VM, the Nginx ingress gateway, client authentication workflow and secure routing foundation used here. The existing Nginx configuration and certificates were reused to expose the new workload and test the YouWatch quarantine flow.
 
 ## Project Overview
 
@@ -100,7 +100,7 @@ I then looked again at my code, and realised the `grep` command wasn't correct -
 ![Corrected YouWatch Syntax](assets/11-youwatch-syntax-fix.png)
 
 ### 2. YouWatch In Action
-After adjusting the filters and log stream command, YouWatch (v1.1) successfully intercepted the alerts and applied quarantine logic:
+After adjusting the filters and log stream command, YouWatch *(v1.1)* successfully intercepted the alerts and applied quarantine logic:
 
 ![YouWatch In Action](assets/12-youwatch-in-action.png)
 
@@ -112,7 +112,7 @@ When running the command `kubectl describe ingress juice-shop-ingress`, the outp
 
 This was because the YouWatch script overwrote the ingress Juice Shop to segment it properly. 
 
-If you are familiar with my previous project, I deployed this web server using the same Nginx controller and VM environment. One of the outcomes was that my iPhone (192.168.1.74 on LAN) was whitelisted and could access the web application on (http://) 192.168.1.112. However, when YouWatch quarantined the pod by applying this overwrite, I am no longer able to access the web application:
+If you are familiar with my previous project, I deployed this web server using the same Nginx controller and VM environment. One of the outcomes was that my iPhone *(192.168.1.74 on LAN)* was whitelisted and could access the web application on *(http://)* 192.168.1.112. However, when YouWatch quarantined the pod by applying this overwrite, I am no longer able to access the web application:
 
 ![Ingress In Action](assets/14-ingress-in-action.png) 
 
@@ -163,7 +163,7 @@ This project has many use cases. Initially, it was supposed to streamline these 
 - Analysis
 - Containment
 
-(In the overall picture - Preparation, Detection, Analysis, Containment, Eradication, Recovery, Lessons Learned). If this was extrapolated further, I believe YouWatch has the capability to address more of those pillars.
+*(In the overall picture - Preparation, Detection, Analysis, Containment, Eradication, Recovery, Lessons Learned)*. If this was extrapolated further, I believe YouWatch has the capability to address more of those pillars.
 
 While Falco cannot detect application-layer exploits, this project establishes the foundation for a future hybrid IDS/WAF system capable of full lifecycle protection.
 
