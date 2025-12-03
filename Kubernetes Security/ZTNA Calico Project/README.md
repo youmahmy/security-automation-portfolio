@@ -124,7 +124,7 @@ Much of the difficulty above stemmed from WSL2’s networking model, which impos
 
 **Why WSL2 Causes Problems**
 
-WSL2 runs inside a lightweight VM with its own virtualised network stack, separated from Windows. CNIs like Calico expect direct control of Linux networking primitives (iptables, eBPF, routing tables) but inside WSL2 these are partially virtualised and do not fully represent the host network. This means consequentially that host traffic doesn’t pass through the Kubernetes CNI chain, meaning pod to pod traffic is enforced, while Windows / Kubernetes traffic completely bypasses Calico. Port forwarding with `kubectl port-forward` further tunnels traffic directly to pods over an internal connection, bypassing NetworkPolicies entirely.
+WSL2 runs inside a lightweight VM with its own virtualised network stack, separated from Windows. CNIs like Calico expect direct control of Linux networking primitives *(iptables, eBPF, routing tables)* but inside WSL2 these are partially virtualised and do not fully represent the host network. This means consequentially that host traffic doesn’t pass through the Kubernetes CNI chain, meaning pod to pod traffic is enforced, while Windows / Kubernetes traffic completely bypasses Calico. Port forwarding with `kubectl port-forward` further tunnels traffic directly to pods over an internal connection, bypassing NetworkPolicies entirely.
 
 **Impact**
 
