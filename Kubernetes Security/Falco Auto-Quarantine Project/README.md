@@ -1,4 +1,4 @@
-# Falco Auto-Quarantine System
+# YouWatch: A Falco Auto-Quarantine System for Kubernetes
 ## Automated Runtime Threat Detection and Ingress Isolation for Kubernetes
 This project demonstrates a full workflow for implementing runtime threat detection with Falco, injecting custom Falco rules for targeted monitoring, and automating real-time quarantine of a vulnerable web application when suspicious activity is detected. The system is deployed on a k3s cluster running on Ubuntu 24.04 inside VirtualBox.
 
