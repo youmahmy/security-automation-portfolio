@@ -3,9 +3,9 @@
 This directory contains a collection of practical Kubernetes security projects designed to demonstrate modern cluster hardening, network isolation, detection engineering, and automated response techniques. Each project replicates realistic scenarios encountered in production environments and is structured to be fully reproducible on a standard workstation. Together, these projects highlight the full lifecycle of Kubernetes security: prevention, detection, and automated response.
 
 ## Overview
-- **Nginx ZTNA Project:** Deployed a k3s cluster in Ubuntu Server to host a vulnerable web application (OWASP Juice Shop) alongside Nginx ingress whitelist rules, differentiating different devices on the LAN and their authorisation to accessing the service.
+- **Nginx ZTNA Project:** Deployed a k3s cluster in Ubuntu Server to host a vulnerable web application *(OWASP Juice Shop)* alongside Nginx ingress whitelist rules, differentiating different devices on the LAN and their authorisation to accessing the service.
 
-- **Calico ZTNA Project:** Used Kind (Kubernetes in Docker) to create a configured Calico cluster, deploy a web application and apply Zero-Trust Network Segmentation based on pod names and Automated Security Controls within a Kubernetes environment. 
+- **Calico ZTNA Project:** Used Kind *(Kubernetes in Docker)* to create a configured Calico cluster, deploy a web application and apply Zero-Trust Network Segmentation based on pod names and Automated Security Controls within a Kubernetes environment. 
 
 
 ## Upcoming Projects
