@@ -1,0 +1,10 @@
+customRules:
+  juice-shop-rules.yaml: |-
+    - rule: Juice Shop Exploitation Detected
+      desc: Detect suspicious activity in the Juice Shop pod
+      condition: >
+        k8s.pod.name contains "juice-shop" and evt.type=execve and proc.name in ("nc", "wget", "sh")
+      output: >
+        ALERT: Exploitation detected in Juice Shop pod (proc=%proc.name cmd=%proc.cmdline user=%user.name)
+      priority: CRITICAL
+      tags: [juice-shop, intrusion]

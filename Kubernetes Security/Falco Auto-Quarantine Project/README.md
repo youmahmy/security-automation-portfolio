@@ -1,18 +1,72 @@
-# Falco Auto-Quarantine System (Coming Soon)
+01, 02 Installed falco using helm
 
 
 
-This project will showcase an automated threat-response pipeline designed to isolate compromised Kubernetes workloads in real time. It integrates Falco’s runtime intrusion detection with a Bash-driven quarantine workflow that applies dynamic Nginx ingress policies whenever a high-risk security event is detected inside a pod.
+03 Injected custom rules via Helm / ConfigMap (falco-juice-shop-rules.yaml)
 
 
 
-Upon completion, the system will continuously monitor container activity for indicators of compromise such as unexpected shell executions, privilege escalation attempts, file tampering, or anomalous network behaviour. When Falco identifies a suspicious event, it will forward the alert to a local automation script. The script will extract the affected pod’s metadata, generate a deny-ingress rule tailored to that pod, and immediately apply it to the cluster. As a result, the compromised workload will be isolated from external traffic within seconds of the initial detection.
+04, 05 Deployed the rule in falco and restarted the daemonset, got new falco pods
 
 
 
-The project will document the full architecture, implementation steps, and the automation logic behind this quarantine pipeline. This will include custom Falco rules, the event streaming mechanism, the real-time ingress modification process, and the final enforcement behaviour observed in the cluster. Detailed logging examples will illustrate every stage of the response cycle, from the initial Falco trigger to the moment the pod becomes unreachable due to quarantine.
+
+
+06 Falco rule not working, but default ruleset is: syntax error with k8s container (ephemeral containers aren’t real workload containers, so Falco wouldn't detect them) because container.name = 'youcefs-juice-shop'.
 
 
 
-This system is intended to be the most advanced project in the Kubernetes Security portfolio, demonstrating a complete detection-to-response workflow that aligns with modern zero-trust and runtime-security methodologies. Once released, it will serve as a practical reference for building automated security controls inside containerised environments.
+
+
+07 updated Falco ruleset and reapplied: Correct syntax = k8s.pod.name contains "juice-shop" and evt.type=execve and proc.name in ("nc", "wget", "sh") Will look for debug pods and nc wget or sh run inside of them as the trigger rule. 
+
+
+
+
+
+08 falco rule working
+
+
+
+09 bash script initial
+
+
+
+10 youwatch running, but not detecting falco logs, realised syntax was wrong because it couldn't pipe the logs as the grep command was wrong.
+
+
+
+11 fixed Youwatch syntax, v1.1, new grep command, updated command to stream logs.
+
+
+
+12 YouWatch in action
+
+
+
+13 Ingress applied from YouWatch to web app
+
+
+
+14 Ingress in action via iPhone that connected before via the Nginx project (same k3s cluster)
+
+
+
+lessons learned:
+
+
+
+falco is good but can't detect actual web application exploit attempts, only pod ones
+
+
+
+next project: use a WAF and stream logs from that in YouWatch 2.0
+
+
+
+
+
+
+
+
 
