@@ -38,11 +38,11 @@ Falco was installed using Helm, following the official Kubernetes quickstart gui
 
 https://falco.org/docs/getting-started/falco-kubernetes-quickstart/
 
-Falco was deployed to the dedicated falco namespace as a DaemonSet, enabling full syscall-level visibility across the cluster. 
+Falco was deployed to the dedicated `falco` namespace as a DaemonSet, enabling full syscall-level visibility across the cluster. 
 
 ![Falco Installtion](assets/01-install-falco.png)
 
-`kubectl get pods -n falco` or `watch kubectl get pods -n falco` can then be run to check if the Falco pods are running:
+Running `kubectl get pods -n falco` or `watch kubectl get pods -n falco` confirms the Falco pods are running:
 
 ![Falco Pods](assets/02-falco-pods-running.png)
 
@@ -52,12 +52,12 @@ A custom rule file `falco-juice-shop-rules.yaml` was created to detect suspiciou
 ![Initial Falco Rule](assets/03-old-falco-rule.png)
 
 ### 3. Deploying the Falco Rule
-I transfered the YAML to my Ubuntu VM environment and applied the rule. After applying the ConfigMap, the Falco DaemonSet was restarted to ensure the new ruleset loaded correctlyL
+The YAML was transferred to my Ubuntu VM environment and applied. After applying the ConfigMap, the Falco DaemonSet was restarted to ensure the new ruleset loaded correctly:
 
 ![Deploying Falco Rule](assets/04-falco-rule-deployment.png)
 
 ### 4. Streaming Falco Logs via the Rule
-I then streamed the Falco logs in real-time:
+I then streamed the Falco logs in real-time with `kubectl logs -l app.kubernetes.io/name=falco -n falco -c falco -f`:
 
 ![Initial Falco Stream](assets/05-falco-rule-applied.png)
 
@@ -72,7 +72,7 @@ I then realised my YAML was wrong. I used an ephemeral debugging container to ac
 This caused the custom rule to never trigger.
 
 #### Corrected YAML
-The correct selector was `k8s.pod.name contains "juice-shop" .....` as opposed to the initial selector `container.name = "youcefs-juice-shop" ......`. I re-transfered the updated YAML and applied it:
+The correct selector was `k8s.pod.name contains "juice-shop" .....` as opposed to the initial selector `container.name = "youcefs-juice-shop" ......`. I re-transferred the updated YAML and applied it:
 
 ![Fixed Falco Rule](assets/07-new-falco-rule.png)
 
@@ -110,7 +110,7 @@ When running the command `kubectl describe ingress juice-shop-ingress`, the outp
 
 ![Ingress Applied](assets/13-ingress-applied.png)
 
-This was because the YouWatch script overwrited the ingress Juice Shop to segment it properly. 
+This was because the YouWatch script overwrote the ingress Juice Shop to segment it properly. 
 
 If you are familiar with my previous project, I deployed this web server using the same Nginx controller and VM environment. One of the outcomes was that my iPhone (192.168.1.74 on LAN) was whitelisted and could access the web application on (http://) 192.168.1.112. However, when YouWatch quarantined the pod by applying this overwrite, I am no longer able to access the web application:
 
@@ -157,7 +157,7 @@ The Falco Auto-Quarantine System provides a working proof-of-concept for:
 - Automated incident response through Kubernetes Ingress manipulation
 - Seamless isolation of compromised workloads
 
-This project's has many use cases. Initially, it was supposed to streamline these parts of the typical Incident Response Plan:
+This project has many use cases. Initially, it was supposed to streamline these parts of the typical Incident Response Plan:
 
 - Detection
 - Analysis
@@ -166,4 +166,6 @@ This project's has many use cases. Initially, it was supposed to streamline thes
 (In the overall picture - Preparation, Detection, Analysis, Containment, Eradication, Recovery, Lessons Learned). If this was extrapolated further, I believe YouWatch has the capability to address more of those pillars.
 
 While Falco cannot detect application-layer exploits, this project establishes the foundation for a future hybrid IDS/WAF system capable of full lifecycle protection.
+
+
 
