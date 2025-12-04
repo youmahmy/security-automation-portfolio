@@ -27,7 +27,7 @@ This forms the basis of a Kubernetes auto-isolation mechanism similar to workloa
 ### Data Flow
 This flow chart builds upon the previous web application deployment that uses an Nginx ingress controller.
 
-![FAQP Flow Chart](assets/00-FAQP-flow-chart.png)
+![FAQP Flow Chart](assets/FAQP-flow-chart.png)
 
 ---
 
