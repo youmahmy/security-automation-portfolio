@@ -11,7 +11,7 @@ This directory contains a collection of practical Kubernetes security projects d
 
 
 ## Upcoming Projects
-- **YouWatch FAW-R Project:** YouWatch FAW-R (Falco + WAF Reactor) builds upon the YouWatch Auto-Quarantine syste. My existing YouWatch Bash script will now stream logs from a Web Application Firewall (WAF), such as ModSecurity or Nginx App Protect, and quarantine the web application by applying the same ingress rule (as used in the Falco Auto-Quarantine Project) to the Nginx ingress pod, or updating the WAF CRD policies for mitigation.
+- **YouWatch FAW-R Project:** YouWatch FAW-R (Falco + WAF Reactor) builds upon my YouWatch Auto-Quarantine system. My existing YouWatch Bash script will now stream logs from a Web Application Firewall (WAF), such as ModSecurity or Nginx App Protect, and quarantine the web application by applying the same ingress rule (as used in the Falco Auto-Quarantine Project) to the Nginx ingress pod, or updating the WAF CRD policies for mitigation.
 
 ---
 This repository aims to provide a high level of technical depth while maintaining clear, accessible documentation. It is intended to showcase a strong understanding of cluster architecture, policy design, and practical DevSecOps workflows. Each project includes architecture diagrams, implementation steps, live log output, and troubleshooting notes to provide complete insight into the decision-making process behind each solution.
