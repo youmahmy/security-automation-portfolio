@@ -15,7 +15,7 @@ The environment was set up in a dedicated VM to ensure stable, production-like n
 ### Data Flow
 The flow chart below illustrates the controlled path of data, ensuring only whitelisted devices are permitted to interact with the application.
 
-![Cluster Flow Chart](assets/01-project-data-flow.png)
+![Cluster Flow Chart](assets/ZTNA-Nginx-project-data-flow.png)
 
 ---
 
@@ -24,17 +24,17 @@ The flow chart below illustrates the controlled path of data, ensuring only whit
 ### 1. Dedicated VM and Networking
 An Ubuntu Server 24.04 LTS instance was installed in VirtualBox using a Bridged Adapter networking setup. This configuration was crucial to ensure the VM received its own unique IP address on the Local Area Network, enabling accurate IP-based policy enforcement.
 
-![VirtualBox Networking Setup](assets/02-vm-networking-setup.png)
+![VirtualBox Networking Setup](assets/01-vm-networking-setup.png)
 
 ### 2. Remote Access
 After configuring the server, SSH access was established from the Windows host using WSL2, allowing for efficient command-line management and file transfers.
 
-![SSH connection from WSL2 to Ubuntu VM](assets/03-wsl2-ssh-connection.png)
+![SSH connection from WSL2 to Ubuntu VM](assets/02-wsl2-ssh-connection.png)
 
 ### 3. Kubernetes Cluster Deployment
 I chose k3s for its lightweight nature and simplicity. The cluster was installed with the default Traefik Ingress controller disabled to prevent conflicts with the Nginx Ingress controller, which was installed separately to manage traffic rules.
 
-![K3s cluster and Nginx Ingress controller installation confirmation](assets/04-k3s-ingress-setup.png)
+![K3s cluster and Nginx Ingress controller installation confirmation](assets/03-k3s-ingress-setup.png)
 
 ---
 
@@ -45,38 +45,38 @@ The deployment utilises a single YAML file containing the web app deployment, a 
 
 The key policy annotations included in the Ingress manifest:
 
-![Deployment and Ingress](assets/05-app-deployment-yaml.png)
+![Deployment and Ingress](assets/04-app-deployment-yaml.png)
 
 ### 2. Application and Verification
 The configuration file was transferred to the server via PowerShell's `scp` command and then applied using `kubectl apply`. 
 
-![PowerShell Transfer](assets/06-powershell-scp-transfer.png) 
+![PowerShell Transfer](assets/05-powershell-scp-transfer.png) 
 
-![Deployment Command](assets/07-kubectl-apply-success.png)
+![Deployment Command](assets/06-kubectl-apply-success.png)
 
 ### 3. Access Testing and Policy Validation
 To observe policy enforcement in real-time, the logs of the Nginx Ingress controller were streamed using the `-f` flag. 
 
-![Ingress Log Stream Command](assets/08-stream-logs-command.png)
+![Ingress Log Stream Command](assets/07-stream-logs-command.png)
 
 |Device | Source IP | Policy Outcome | Log Evidence
 | :--- | :--- | :--- | :--- |
 |Windows PC|192.168.1.102|DENY|The PC's IP, which was not whitelisted, was successfully blocked.
 |iPhone|192.168.1.74|ALLOW|The whitelisted connection was granted access.
 
-![Deny Log Stream](assets/09-log-analysis-denied-allowed.png)
+![Deny Log Stream](assets/08-log-analysis-denied-allowed.png)
 
 The policy was successfully verified by accessing the web app from the whitelisted iPhone: 
 
-![Allow Log Stream](assets/10-iphone-access-success.png)
+![Allow Log Stream](assets/09-iphone-access-success.png)
 
 Connection via the browser on mobile:
 
-![iPhone Browser Test](assets/11-web-app-loaded-verification-a.png)
+![iPhone Browser Test](assets/10-web-app-loaded-verification-a.png)
 
 The LAN IP given to the iPhone matches the one in the whitelisted deployment YAML:
 
-![iPhone LAN IP](assets/12-web-app-loaded-verification-b.png)
+![iPhone LAN IP](assets/11-web-app-loaded-verification-b.png)
 
 ## Troubleshooting and Notes
 ### WSL2, MicroK8s and Docker Limitations
