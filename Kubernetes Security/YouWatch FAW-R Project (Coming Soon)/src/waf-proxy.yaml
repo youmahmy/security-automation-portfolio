@@ -1,0 +1,62 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: juice-shop-waf-proxy
+  labels:
+    app: waf-proxy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: waf-proxy
+  template:
+    metadata:
+      labels:
+        app: waf-proxy
+    spec:
+      # SsecurityContext block for  root write access
+      securityContext:
+        runAsUser: 0
+        runAsGroup: 0
+        fsGroup: 0
+        
+      volumes:
+        # Keep the logs volume
+        - name: modsec-logs
+          hostPath:
+            path: /var/log/waf
+            type: DirectoryOrCreate
+      
+      containers:
+        - name: modsecurity-nginx
+          image: owasp/modsecurity-crs:nginx
+          
+          ports:
+            - containerPort: 8080
+
+          env:
+            - name: BACKEND
+              value: http://youcefs-juice-shop:3000
+            - name: MODSEC_RULE_ENGINE
+              value: "on"
+            # ENV variable to force the log path
+            - name: MODSEC_AUDIT_LOG
+              value: "/var/log/waf/modsec_audit.log" 
+
+          volumeMounts:
+            # Mount the logs directory
+            - name: modsec-logs
+              mountPath: /var/log/waf
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: juice-shop-waf
+spec:
+  selector:
+    app: waf-proxy
+  ports:
+    - port: 80
+      targetPort: 8080
+  type: ClusterIP

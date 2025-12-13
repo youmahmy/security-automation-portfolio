@@ -1,0 +1,21 @@
+# Ingress Routing
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: juice-shop-waf-ingress
+  namespace: default
+  annotations:
+    nginx.ingress.kubernetes.io/server-snippet:
+      allow all;
+spec:
+  ingressClassName: nginx
+  rules:
+  - http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: juice-shop-waf # Routes to the WAF Service. This completes the proxy
+            port:
+              number: 80
