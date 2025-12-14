@@ -24,9 +24,9 @@ Implementation of access control and network segmentation using Calico Network P
 ### Security Automation & Endpoint Controls
 Creation of PowerShell-based security automation tools addressing:
 
-* File integrity monitoring (YouCheck)
-* Data discovery and exposure identification (YouScan)
-* Data loss prevention and redaction (Redactor)
+* File integrity monitoring *(YouCheck)*
+* Data discovery and exposure identification *(YouScan)*
+* Data loss prevention and redaction *(Redactor)*
 
 These tools focus on reducing manual effort while improving visibility and control over sensitive data on endpoints.
 
@@ -36,7 +36,7 @@ Establishment of structured exploit mapping to realistic attacker techniques usi
 ---
 
 ## Security Engineering Perspective
-Across all projects, emphasis is placed on understanding attacker behaviour and threat models, designing controls that are enforceable and observable, reducing time to deletion and containment and evaluating control effectiveness and limitations.
+Across all of my projects, emphasis is placed on understanding attacker behaviour and threat models, designing controls that are enforceable and observable, reducing time to deletion and containment and evaluating control effectiveness and limitations.
 
 This portfolio reflects a security engineering mindset focused on building, validating, and improving defensive systems, rather than relying solely on tool outputs.
 
