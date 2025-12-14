@@ -67,9 +67,11 @@ With logs accessible, the next step was to build a lightweight response engine c
 
 ![SQL Only Code](assets/03-fawr-sql-waf-code.png) 
 
+FAW-R looks for the `X-Forwarded-For` or `X-Real-IP` headers in the ModSecurity logs to extract the attacker IP and isolate it for visibility and future infraction consequences.
+
 ![SQL Only Detection](assets/04-fawr-sql-waf-detection.png)
 
-Rather than keying off individual rule IDs *(which vary between CRS versions)*, the script inspects semantic tags attached to each alert. Tags beginning with `attack-*` represent meaningful security violations, while tags such as attack-protocol and attack-generic often represent low-signal noise. 
+Rather than keying off individual rule IDs *(which vary between CRS versions)*, the script inspects semantic tags attached to each alert. Tags beginning with `attack-*` represent meaningful security violations, while tags such as `attack-protocol` and `attack-generic` often represent low-signal noise. 
 
 Before the attack filtering:
 
