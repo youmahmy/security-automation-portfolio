@@ -1,4 +1,4 @@
-# Kubernetes Security Portfolio
+# Kubernetes Security
 
 This directory contains a collection of practical Kubernetes security projects designed to demonstrate modern cluster hardening, network isolation, detection engineering, and automated response techniques. Each project replicates realistic scenarios encountered in production environments and is structured to be fully reproducible on a standard workstation. Together, these projects highlight the full lifecycle of Kubernetes security: prevention, detection, and automated response.
 
