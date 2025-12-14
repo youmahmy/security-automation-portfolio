@@ -1,5 +1,7 @@
 # Security Automation Portfolio
-A collection of projects and scripts for enterprise security operations by Youcef Mahmoudi.
+A collection of security engineering and automation projects focused on detection, response, and platform security.
+
+**By Youcef Mahmoudi**
 
 ---
 
