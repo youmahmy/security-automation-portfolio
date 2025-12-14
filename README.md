@@ -1,4 +1,4 @@
-# security-automation-portfolio
+# Security Automation Portfolio
 A collection of projects and scripts for enterprise security operations by Youcef Mahmoudi.
 
 ---
