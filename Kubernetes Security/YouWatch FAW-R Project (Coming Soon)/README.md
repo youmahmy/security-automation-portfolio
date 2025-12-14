@@ -1,9 +1,10 @@
 # YouWatch FAW-R: A Multi-Layered Security Response Engine for Kubernetes
 
-## Overview
+## Project Overview
 YouWatch FAW-R is the next-generation automated threat mitigation system designed for Kubernetes. 
 
-Building upon the successful principles of the YouWatch Auto-Quarantine system, FAW-R (Falco + WAF Reactor) unifies threat intelligence from both Runtime Detection (via Falco) and Application Layer Defence (via WAFs like ModSecurity) to provide a dynamic and instantaneous response capability.
+## Prerequisites
+Building upon the successful principles of the YouWatch Auto-Quarantine system, FAW-R *(Falco + WAF Reactor)* unifies threat intelligence from both Runtime Detection *(via Falco)* and Application Layer Defence *(via WAFs like ModSecurity)* to provide a dynamic and instantaneous response capability. That project details the Nginx ingress and Falco installation with the specific Falco rule applied.
 
 **Threat coverage**
 - SQL Injection
@@ -20,10 +21,10 @@ In modern Kubernetes deployments, a single defence layer is insufficient. YouWat
 
 ### Stack Used
 * **Operating System:** Ubuntu Server 24.04 LTS *(inside VirtualBox)* 
-* **Networking:** Bridged Adapter *(we're using LAN connectivity)*
+* **Networking:** Bridged Adapter *(LAN connectivity)*
 * **Container Orchestration:** K3s *(lightweight Kubernetes distribution)*
-* **Security:** Nginx Ingress Controller *(for IP Whitelisting)*, Falco IDS, YouWatch *(youwatch.sh)*
-* **Target:** OWASP Juice Shop Pod (intentionally vulnerable)
+* **Security:** Nginx Ingress Controller *(for IP Whitelisting)*, Falco IDS, YouWatch FAW-R *(Youwatch FAW-R.py)*
+* **Target:** OWASP Juice Shop Pod *(intentionally vulnerable)*
 
 ### Data Flow
 The FAW-R architecture will center around a central response daemon that monitors inputs and executes mitigation steps:
@@ -55,7 +56,7 @@ With logs accessible, the next step was to build a lightweight response engine c
 
 ![SQL Only Detection](assets/04-fawr-sql-waf-detection.png)
 
-Rather than keying off individual rule IDs (which vary between CRS versions), the script inspects semantic tags attached to each alert. Tags beginning with attack-* represent meaningful security violations, while tags such as attack-protocol and attack-generic often represent low-signal noise. 
+Rather than keying off individual rule IDs *(which vary between CRS versions)*, the script inspects semantic tags attached to each alert. Tags beginning with `attack-*` represent meaningful security violations, while tags such as attack-protocol and attack-generic often represent low-signal noise. 
 
 Before the attack filtering:
 
@@ -149,29 +150,31 @@ Throughout the development of YouWatch FAW-R, several technical and design chall
 | **Falco logs not detectable from filesystem** | Streaming logs via `kubectl logs -f` provided consistent, real-time visibility. |
 | **Falco alerts visible live but missing from log history** | This behavior was traced to Falco’s `stdout`-based logging and rotation, reinforcing the need for real-time log consumption rather than post-event analysis. |
 | **Quarantining via Ingress insufficient for runtime compromise** | Blocking HTTP traffic alone did not remove attackers who had already achieved code execution inside the pod. This highlighted a key limitation of network-only containment. |
-| **Network policies ineffective for active exploitation** | Initial attempts to isolate compromised pods using Kubernetes NetworkPolicies did not terminate active sessions or malicious processes. This led to the adoption of a stronger remediation strategy (pod deletion). |
+| **Network policies ineffective for active exploitation** | Initial attempts to isolate compromised pods using Kubernetes NetworkPolicies did not terminate active sessions or malicious processes. This led to the adoption of a stronger remediation strategy *(pod deletion)*. |
 
 ---
 
 ### Real World Applications of YouWatch FAW-R
 
-Essentially, FAW-R acts as a mini SOAR pipeline, without a formal SOAR platform: Event --> Classification --> Decision --> Automated Action.
+Essentially, FAW-R acts as a mini SOAR pipeline, without a formal SOAR platform: 
 
-Many IR teams fail because they start building tooling during an incident. FAW-R is always on. This means FAW-R complements these aspects of a typical IR plan...
+**Event --> Classification --> Decision --> Automated Action**
 
-* Preparation (Pre-deployed controls and automation)
-* Detection (WAF + Falco runtime detection)
-* Containment (IP blocking + pod deletion)
-* Eradication (**Partial:** Cloud-native immutability)
-* Recovery (K8s pod recreation)
+Many Incident Response teams fail because they start building tooling during an incident. FAW-R is always on. This means FAW-R complements these aspects of a typical IR plan...
+
+* Preparation *(Pre-deployed controls and automation)*
+* Detection *(WAF + Falco runtime detection)*
+* Containment *(IP blocking + pod deletion)*
+* Eradication *(**Partial:** Cloud-native immutability)*
+* Recovery *(K8s pod recreation)*
 
 ...in the wider picture of Preparation, Detection, Analysis, Containment, Eradication, Recovery, Lessons Learned. 
 
 YouWatch FAW-R also complements:
 
-- Detection engineering (high-signal detection logic, avoiding alert fatigue, CRS rule abstration)
-- Cloud security (k8s response patterns, immutable infrastructure principles, self healing systems)
-- Threat modelling (modelled external attacker paths, runtime breakout scenarios, blast radius reduction)
+- Detection engineering *(high-signal detection logic, avoiding alert fatigue, CRS rule abstration)*
+- Cloud security *(k8s response patterns, immutable infrastructure principles, self healing systems)*
+- Threat modelling *(modelled external attacker paths, runtime breakout scenarios, blast radius reduction)*
 
 
 
