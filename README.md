@@ -40,13 +40,7 @@ Across all of my projects, emphasis is placed on understanding attacker behaviou
 
 This portfolio reflects a security engineering mindset focused on building, validating, and improving defensive systems, rather than relying solely on tool outputs.
 
+--- 
 
-
-
-
-
-
-
-
-
-
+## Upcoming Projects
+- **FAW-R Threat Modelling:** Structured threat modelling using PASTA to identify web-layer and runtime threats, mapping them to MITRE ATT&CK techniques. I'll build automated controls to further reduce time to containment.
