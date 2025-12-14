@@ -42,11 +42,11 @@ When combined with Falco, external attacks are stopped at the ingress. Internal 
 ### Data Flow
 The FAW-R architecture will center around a central response daemon that monitors inputs and executes mitigation steps:
 
+![FAW-R Data Flow Diagram](assets/FAWR-data-flow.png)
+
 * **Inputs:** Falco and WAF log outputs
 * **Logic:** The FAW-R engine correlates events and applies pre-defined response playbooks.
 * **Outputs:** The mitigation. Kubernetes API calls to update Nginx Ingress rules based on the attacker IP. Complete deletion of compromised pod based on the custom Falco ruleset in the YouWatch Falco Auto-Quarantine Project. This ensures both external attack prevention and internal compromise containment.
-
-![FAW-R Data Flow Diagram](assets/FAWR-data-flow.png)
 
 ---
 ## Part 1: ModSecurity WAF Deployment with Accessible Logs
