@@ -76,7 +76,7 @@ Threat models may include:
 - Control-to-threat mapping
 - Mitigation and detection strategy summaries
 
-The emphasis is on clarity, traceability, and security impact rather than documentation volume.
+The emphasis is on clarity and security impact rather than documentation volume.
 
 ---
 
@@ -88,3 +88,4 @@ This directory is structured to support additional work such as:
 - Detection gap analysis and tuning
 - Threat-informed defence planning
 - Integration with incident response playbooks
+
