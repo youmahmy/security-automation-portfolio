@@ -1,29 +1,44 @@
 # YouWatch FAW-R: A Multi-Layered Security Response Engine for Kubernetes
 
 ## Project Overview
-YouWatch FAW-R is the next-generation automated threat mitigation system designed for Kubernetes. 
+YouWatch FAW-R is the next-generation automated threat mitigation system designed for Kubernetes. Building upon the successful principles of the YouWatch Auto-Quarantine system, FAW-R *(Falco + WAF Reactor)* unifies threat intelligence from both Runtime Detection *(via Falco)* and Application Layer Defence *(via WAFs like ModSecurity)* to provide a dynamic and instantaneous response capability.
 
-## Prerequisites
-Building upon the successful principles of the YouWatch Auto-Quarantine system, FAW-R *(Falco + WAF Reactor)* unifies threat intelligence from both Runtime Detection *(via Falco)* and Application Layer Defence *(via WAFs like ModSecurity)* to provide a dynamic and instantaneous response capability. That project details the Nginx ingress and Falco installation with the specific Falco rule applied.
+### Prerequisites
+FAW-R builds upon the environment established in the YouWatch Falco AQS project, which details the Nginx ingress and Falco installation with the specific Falco rule applied to monitor specific pods. The Python script for FAW-R references those resources, so if you wish to test FAW-R out for yourself you will need to correlate the variables in the code to your own cluster environment.
 
 **Threat coverage**
-- SQL Injection
-- XSS
-- Generic CRS attacks
-- Runtime exploitation attempts
+FAW-R complements the Core Rule Set (CRS) of the ModSecurity WAF by coverting detection into immediate response. Therefore, coverage includes:
+
+- SQL Injection (SQLi)
+- Cross-Site Scripting (XSS)
+- Command Injection and OS Command Execution
+- Local and Remote File Inclusion (LFI / RFI)
+- Path Traversal
+- XML External Entity (XXE)
+- Server-Side Request Forgery (SSRF)
+- HTTP Protocol Abuse and Request Smuggling
+- Authentication and Session Attacks
+- Automated Scanning and Reconnaissance
+- Other runtime exploitation attempts
 
 **Automated responses**
 - Per-IP blocking at the ingress layer
 - Runtime exploit detection
 - Compromised pod termination and automatic recovery
 
-In modern Kubernetes deployments, a single defence layer is insufficient. YouWatch FAW-R bridges that gap. YouWatch FAW-R has deep kernel visibility and front-end application security, allowing for rapid quarantine of malicious activity at the earliest point of detection.
+In modern Kubernetes deployments, a single defence layer is insufficient. YouWatch FAW-R bridges that gap. YouWatch FAW-R has deep kernel visibility and front-end application security, allowing for rapid quarantine of malicious activity at the earliest point of detection. FAW-R prevents the full spectrum of OWASP Top 10 and beyond. It doesn't block traffic blindly. It transforms WAF detections into automated, live containment actions.
 
-### Stack Used
-* **Operating System:** Ubuntu Server 24.04 LTS *(inside VirtualBox)* 
+When combined with Falco, external attacks are stopped at the ingress. Internal exploitation triggers pod termination and the attack chain is broken at multiple layers. This positions FAW-R as a WAF, an Automated Incident Response Engine and a Runtime Security Orchestrator all-in-one.
+
+---
+
+## Stack Used
+* **VirtualBox VM:** *(192.168.1.112 on LAN)*
+  * **Operating System:** Ubuntu Server 24.04 LTS *(inside VirtualBox)* 
 * **Networking:** Bridged Adapter *(LAN connectivity)*
 * **Container Orchestration:** K3s *(lightweight Kubernetes distribution)*
-* **Security:** Nginx Ingress Controller *(for IP Whitelisting)*, Falco IDS, YouWatch FAW-R *(Youwatch FAW-R.py)*
+* **Security:** Nginx Ingress Controller *(for IP Whitelisting)*, Falco IDS, ModSecurity WAF, YouWatch FAW-R *(Youwatch FAW-R.py)*
+* **Attacker Machine:** My PC running Windows 11 Home *(192.168.1.102 on LAN)*
 * **Target:** OWASP Juice Shop Pod *(intentionally vulnerable)*
 
 ### Data Flow
@@ -89,7 +104,7 @@ Each attacking IP is appended to a deny list, ensuring repeated attempts are blo
 
 ![Blocking Attacker IP 3](assets/10-blocking-attacker-ip-3.png)
 
-This method was chosen because it's fast, reversible (just re-apply the ingress.yaml with `kubectl apply -f ingress.yaml`) and it aligns with Kubernetes-native configuration patterns.
+This method was chosen because it's fast, reversible *(just re-apply the ingress.yaml with `kubectl apply -f ingress.yaml`)* and it aligns with Kubernetes-native configuration patterns.
 
 ![Blocking Attacker IP 4](assets/10-blocking-attacker-ip-4.png) 
 
