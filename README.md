@@ -35,7 +35,10 @@ Establishment of structured exploit mapping to realistic attacker techniques usi
 
 ---
 
-All projects demonstrate a comprehensive understanding of the security lifecycle, from infrastructure deployment and policy enforcement, to continuous monitoring and troubleshooting complex networking challenges.
+## Security Engineering Perspective
+Across all projects, emphasis is placed on understanding attacker behaviour and threat models, designing controls that are enforceable and observable, reducing time to deletion and containment and evaluating control effectiveness and limitations.
+
+This portfolio reflects a security engineering mindset focused on building, validating, and improving defensive systems, rather than relying solely on tool outputs.
 
 
 
