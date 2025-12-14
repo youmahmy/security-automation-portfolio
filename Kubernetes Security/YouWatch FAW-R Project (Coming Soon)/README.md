@@ -30,9 +30,7 @@ In modern Kubernetes deployments, a single defence layer is insufficient. YouWat
 
 When combined with Falco, external attacks are stopped at the ingress. Internal exploitation triggers pod termination and the attack chain is broken at multiple layers. This positions FAW-R as a WAF, an Automated Incident Response Engine and a Runtime Security Orchestrator all-in-one.
 
----
-
-## Stack Used
+### Stack Used
 * **VirtualBox VM:** *(192.168.1.112 on LAN)*
   * **Operating System:** Ubuntu Server 24.04 LTS *(inside VirtualBox)* 
 * **Networking:** Bridged Adapter *(LAN connectivity)*
