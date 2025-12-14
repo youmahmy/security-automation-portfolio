@@ -6,7 +6,7 @@ YouWatch FAW-R is the next-generation automated threat mitigation system designe
 ### Prerequisites
 FAW-R builds upon the environment established in the YouWatch Falco AQS project, which details the Nginx ingress and Falco installation with the specific Falco rule applied to monitor specific pods. The Python script for FAW-R references those resources, so if you wish to test FAW-R out for yourself you will need to correlate the variables in the code to your own cluster environment.
 
-**Threat coverage**
+### Threat coverage
 FAW-R complements the Core Rule Set (CRS) of the ModSecurity WAF by coverting detection into immediate response. Therefore, coverage includes:
 
 - SQL Injection (SQLi)
@@ -31,12 +31,12 @@ In modern Kubernetes deployments, a single defence layer is insufficient. YouWat
 When combined with Falco, external attacks are stopped at the ingress. Internal exploitation triggers pod termination and the attack chain is broken at multiple layers. This positions FAW-R as a WAF, an Automated Incident Response Engine and a Runtime Security Orchestrator all-in-one.
 
 ### Stack Used
-* **VirtualBox VM:** *(192.168.1.112 on LAN)*
+* **VirtualBox VM:** *(192.168.1.112 on my LAN)*
   * **Operating System:** Ubuntu Server 24.04 LTS *(inside VirtualBox)* 
 * **Networking:** Bridged Adapter *(LAN connectivity)*
 * **Container Orchestration:** K3s *(lightweight Kubernetes distribution)*
 * **Security:** Nginx Ingress Controller *(for IP Whitelisting)*, Falco IDS, ModSecurity WAF, YouWatch FAW-R *(Youwatch FAW-R.py)*
-* **Attacker Machine:** My PC running Windows 11 Home *(192.168.1.102 on LAN)*
+* **Attacker Machine:** My PC running Windows 11 Home *(192.168.1.102 on my LAN)*
 * **Target:** OWASP Juice Shop Pod *(intentionally vulnerable)*
 
 ### Data Flow
