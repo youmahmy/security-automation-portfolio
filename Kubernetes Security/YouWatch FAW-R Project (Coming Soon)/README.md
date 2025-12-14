@@ -40,7 +40,7 @@ When combined with Falco, external attacks are stopped at the ingress. Internal 
 * **Target:** OWASP Juice Shop Pod *(intentionally vulnerable)*
 
 ### Data Flow
-The FAW-R architecture will center around a central response daemon that monitors inputs and executes mitigation steps:
+The FAW-R architecture will center around FAW-R's central response capability that monitors inputs and executes mitigation steps:
 
 ![FAW-R Data Flow Diagram](assets/FAWR-data-flow.png)
 
