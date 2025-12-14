@@ -3,7 +3,7 @@ A collection of projects and scripts for enterprise security operations by Youce
 
 ---
 
-# Introduction
+## Introduction
 This portfolio documents practical security engineering projects that focus on automated detection, response, and control enforcement across Kubernetes, cloud-native, and endpoint environments. Rather than isolated tool deployments, these projects are designed as end-to-end security systems, demonstrating how alerts, policies, and runtime signals can be translated into meaningful security outcomes such as containment, isolation, and recovery.
 
 The work emphasises practical security engineering trade-offs, failure handling, and real-world operational constraints.
