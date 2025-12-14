@@ -32,9 +32,8 @@ Rather than relying on alerting alone, FAW-R enforces immediate mitigation actio
 #### Expandability
 
 FAW-R is designed to support future enhancements such as:
-- Additional detection sources (SIEM, IDS, cloud logs)
-- More granular response actions (network policies, pod deletion, namespace isolation)
-- Policy-driven response logic and severity-based decision making
+- Additional detection sources (SIEM, cloud logs)
+- Policy-driven response logic and severity-based / infraction frequency decision making
 
 ---
 
@@ -45,3 +44,4 @@ This directory is intended to grow with additional Python-based security automat
 - Detection correlation engines
 - Security telemetry enrichment pipelines
 - Kubernetes security controllers and operators
+
