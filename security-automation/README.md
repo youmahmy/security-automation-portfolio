@@ -1,4 +1,4 @@
-# Security Automation
+# Security Automation 
 
 This directory contains security-focused automation projects designed to improve detection, response, and containment across cloud-native and endpoint environments.
 
@@ -43,3 +43,4 @@ Each language directory contains a dedicated README describing the security prob
 ## Future Expansion
 
 This directory is intentionally structured to support future additions, including additional response actions, new languages and automation frameworks and integration with SIEM, SOAR, and cloud-native security platforms.
+
