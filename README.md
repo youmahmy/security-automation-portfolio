@@ -38,7 +38,7 @@ Establishment of structured exploit mapping to realistic attacker techniques usi
 ---
 
 ## Security Engineering Perspective
-Across all of my projects, emphasis is placed on understanding attacker behaviour and threat models, designing controls that are enforceable and observable, reducing time to deletion and containment and evaluating control effectiveness and limitations.
+Across all of my projects, emphasis is placed on understanding attacker behaviour and threat models, designing controls that are enforceable and observable, reducing time to deletion and containment and evaluating control effectiveness and limitations. All projects incorporate static review of automation code and dynamic attack simulation against the target applications to validate detection accuracy and response effectiveness.
 
 This portfolio reflects a security engineering mindset focused on building, validating, and improving defensive systems, rather than relying solely on tool outputs.
 
